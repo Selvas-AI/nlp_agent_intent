@@ -1,0 +1,3 @@
+[submodule "fasttext"]
+	path = fasttext
+	url = http://git.selvasai.com/r/nlp/fasttext.git
