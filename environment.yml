@@ -1,0 +1,7 @@
+name: intent
+dependencies:
+- python=3.5
+- pip:
+    - flask
+    - flask_restful
+    - requests
