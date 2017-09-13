@@ -174,7 +174,7 @@ def get_app_list():
 @app.route("/api/v1.0/apps/<int:id>/export", methods=["GET"])
 def export(id):
     # @todo(andrew) 앱 데이터 리턴하는 함수 구현
-    return Response("success")
+    return Response("Success")
 
 
 @app.route("/api/v1.0/apps/import", methods=["POST"])
@@ -183,7 +183,7 @@ def import_app():
     json_data = request.get_json(force=True)
     # @todo(andrew) 앱 데이터를 임포트하는 함수 구현
     # app id 리턴
-    return Response("success")
+    return Response("Success")
 
 
 @app.route("/api/v1.0/apps/<int:id>/example", methods=["POST"])
@@ -301,7 +301,7 @@ def get_examples(id):
     skip = request.args.get(SKIP, None)
     count = request.args.get(COUNT, None)
     # @todo(andrew) examples를 반환 하는 함수 구현
-    return Response("success")
+    return Response("Success")
 
 
 @app.route("/api/v1.0/apps/<int:id>/intents", methods=["POST"])
