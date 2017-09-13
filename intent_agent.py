@@ -33,6 +33,13 @@ EXAMPLE = "example"
 INPUT_PATH = "input_path"
 OUTPUT_PATH = "output_path"
 TRAINING = "training"
+DICTIONARY = "dictionary"
+MIN_COUNT = "minCount"
+MIN_N = "minn"
+MAX_N = "maxn"
+LR = "lr"
+LOSS = "loss"
+SOFTMAX = "softmax"
 PRETRAINED_VECTORS = "pretrainedVectors"
 SKIPGRAM = "skipgram"
 CBOW = "cbow"
@@ -58,6 +65,24 @@ def get_app_name(id):
         return False, ""
 
     key = list(APP_DATA.keys())[index]
+    global_lock.release()
+    return True, key
+
+
+def get_intent_name(app_index, intent_index):
+    global_lock.acquire()
+    intents = INDENT_DATA[app_index]
+    ids = intents.values()
+    index = 0
+    for value in ids:
+        if value == intent_index:
+            break
+        index += 1
+
+    if index == len(intents):
+        return False, ""
+
+    key = list(intents.keys())[index]
     global_lock.release()
     return True, key
 
@@ -362,14 +387,25 @@ def prediction(id):
     if not success:
         abort(400)
 
+    results = dict()
     model = MODEL_DATA[id][FASTTEXT_MODEL][1]
     result = model.Predict(app_name, 1, example)
     if not result.first:
-        abort(400)
+        # @todo(andrew) label 이 안나오는 경우가 있음
+        Response(json.dumps(results, ensure_ascii=False))
 
-    # @todo(andrew) 결과 확인
+    outputs = result.second
 
-    return Response("Success")
+    for index in range(len(outputs)):
+        output = outputs[index]
+        label = output[0]
+        i = int(label[9:])
+        success, intent_name = get_intent_name(id, i)
+        if not success:
+            abort(400)
+        results[intent_name] = output[1]
+
+    return Response(json.dumps(results, ensure_ascii=False))
 
 
 @app.route("/api/v1.0/apps/<int:id>/train", methods=["POST"])
@@ -404,12 +440,27 @@ def train(id):
         parameter = copy.deepcopy(json_data)
         parameter[INPUT_PATH] = input_file_path
         parameter[OUTPUT_PATH] = output_file_path
+
+        if not DICTIONARY in parameter.keys():
+            parameter[DICTIONARY] = dict()
+
+        parameter[DICTIONARY][MIN_COUNT] = 1
+        parameter[DICTIONARY][MIN_N] = 0
+        parameter[DICTIONARY][MAX_N] = 0
+
+        if not TRAINING in parameter.keys():
+            parameter[TRAINING] = dict()
+
+        parameter[TRAINING][MODEL] = SUPERVISED
+        parameter[TRAINING][LR] = 0.1
+        parameter[TRAINING][LOSS] = SOFTMAX
         result = model.Train(app_name, json.dumps(parameter))
+        if not result:
+            abort(400)
         global_lock.release()
     except Exception as e:
         global_lock.release()
         abort(400)
-
 
     return Response("Success")
 
