@@ -14,7 +14,9 @@
 
   *  ExampleText 필드에 입력 문장을 적는다. (필수)
   *  IntentName 필드에 의도를 적는다. (선택)
-``` json
+  
+```
+json
 {
   "ExampleText" : string,
   "IntentName" : string
