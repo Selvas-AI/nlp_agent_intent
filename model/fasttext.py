@@ -112,38 +112,35 @@ class FasttextWrapper(_object):
     __swig_destroy__ = _fasttext.delete_FasttextWrapper
     __del__ = lambda self: None
 
-    def LoadModel(self, name, path):
-        return _fasttext.FasttextWrapper_LoadModel(self, name, path)
+    def LoadModel(self, path):
+        return _fasttext.FasttextWrapper_LoadModel(self, path)
 
-    def UnLoadModel(self, name):
-        return _fasttext.FasttextWrapper_UnLoadModel(self, name)
+    def Train(self, info):
+        return _fasttext.FasttextWrapper_Train(self, info)
 
-    def Train(self, name, info):
-        return _fasttext.FasttextWrapper_Train(self, name, info)
+    def Analogies(self, k, A, B, C):
+        return _fasttext.FasttextWrapper_Analogies(self, k, A, B, C)
 
-    def Analogies(self, name, k, A, B, C):
-        return _fasttext.FasttextWrapper_Analogies(self, name, k, A, B, C)
+    def NN(self, k, query):
+        return _fasttext.FasttextWrapper_NN(self, k, query)
 
-    def NN(self, name, k, query):
-        return _fasttext.FasttextWrapper_NN(self, name, k, query)
+    def GetNgrams(self, word):
+        return _fasttext.FasttextWrapper_GetNgrams(self, word)
 
-    def GetNgrams(self, name, word):
-        return _fasttext.FasttextWrapper_GetNgrams(self, name, word)
+    def GetSentenceVector(self, query):
+        return _fasttext.FasttextWrapper_GetSentenceVector(self, query)
 
-    def GetSentenceVector(self, name, query):
-        return _fasttext.FasttextWrapper_GetSentenceVector(self, name, query)
+    def GetWordVectors(self, query):
+        return _fasttext.FasttextWrapper_GetWordVectors(self, query)
 
-    def GetWordVectors(self, name, query):
-        return _fasttext.FasttextWrapper_GetWordVectors(self, name, query)
+    def Predict(self, k, query):
+        return _fasttext.FasttextWrapper_Predict(self, k, query)
 
-    def Predict(self, name, k, query):
-        return _fasttext.FasttextWrapper_Predict(self, name, k, query)
+    def Test(self, k, file_path):
+        return _fasttext.FasttextWrapper_Test(self, k, file_path)
 
-    def Test(self, name, k, file_path):
-        return _fasttext.FasttextWrapper_Test(self, name, k, file_path)
-
-    def Quantize(self, name, info):
-        return _fasttext.FasttextWrapper_Quantize(self, name, info)
+    def Quantize(self, info):
+        return _fasttext.FasttextWrapper_Quantize(self, info)
 FasttextWrapper_swigregister = _fasttext.FasttextWrapper_swigregister
 FasttextWrapper_swigregister(FasttextWrapper)
 

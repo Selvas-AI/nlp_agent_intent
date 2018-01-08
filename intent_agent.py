@@ -473,7 +473,7 @@ def get_train_state(id):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--port', type=str, default='8000')
+    parser.add_argument('--port', type=int, default=8000)
     conf = parser.parse_args()
 
     app.run(host='0.0.0.0', port=conf.port, debug=False, threaded=True)
