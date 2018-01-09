@@ -1,0 +1,23 @@
+FIND_PACKAGE(SWIG REQUIRED)
+INCLUDE(${SWIG_USE_FILE})
+FIND_PACKAGE(PythonLibs REQUIRED)
+
+set(FASTTEXT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../cpp")
+set(JSONCPP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../jsoncpp")
+
+INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
+
+include_directories(${FASTTEXT_DIR}
+                    ${JSONCPP_DIR}
+                    ${CMAKE_CURRENT_SOURCE_DIR})
+
+SET(CMAKE_SWIG_FLAGS "")
+
+SET_SOURCE_FILES_PROPERTIES(fasttext.i PROPERTIES CPLUSPLUS ON)
+set(CMAKE_SWIG_OUTDIR ${LIBRARY_OUTPUT_PATH})
+
+add_definitions(-D__DEF_BOOL__)
+SWIG_ADD_MODULE(fasttext python fasttext.i fasttext_wrapper.h fasttext_wrapper.cc $<TARGET_OBJECTS:fasttext> $<TARGET_OBJECTS:jsoncpp>)
+if(WIN32)
+  SWIG_LINK_LIBRARIES(fasttext ${PYTHON_LIBRARIES})
+endif()

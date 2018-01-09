@@ -1,0 +1,7 @@
+cd ..
+mkdir unix
+cd unix
+rm CMakeCache.txt
+rm -rf CMakeFiles
+rm -rf external
+cmake ..
