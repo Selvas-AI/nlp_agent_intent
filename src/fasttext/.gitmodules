@@ -1,3 +1,0 @@
-[submodule "build-policy"]
-	path = build-policy
-	url = http://gitlab.selvasai.com/diopen/share2/build-policy.git

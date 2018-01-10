@@ -1,2 +1,0 @@
-DioPen Build Policy
-=================
