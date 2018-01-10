@@ -1,11 +1,12 @@
 # -*- coding: utf-8-*-
 import json
-import variable
 
-from fasttext_default import INTENT_MODEL
 from flask import make_response
 from flask_restful import Resource, reqparse
-from variable import CANDIDATE_NUMBER
+
+import variable
+from fasttext_default import INTENT_MODEL
+from variable import CANDIDATE_NUMBER, preprocessing
 
 
 class Predict(Resource):
@@ -19,7 +20,8 @@ class Predict(Resource):
             return make_response("Not yet trained.", 200)
 
         args = self.req_parse.parse_args(strict=True)
-        example = args['example']
+        example_text = args['example']
+        example = preprocessing(example_text)
 
         variable.GLOBAL_LOCK.acquire()
         result = INTENT_MODEL.Predict(CANDIDATE_NUMBER, example)

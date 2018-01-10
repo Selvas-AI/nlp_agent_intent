@@ -1,13 +1,14 @@
 # -*- coding: utf-8-*-
+
 import copy
 import datetime
 import json
 import os
+
 import variable
-
 from fasttext import FasttextWrapper
+from variable import INTENT_ROOT_PATH, INTENT_MODEL, EXAMPLES_REPO, preprocessing
 
-from variable import INTENT_ROOT_PATH, INTENT_MODEL, EXAMPLES_REPO
 
 FASTTEXT_ROOT_PATH = os.path.join(INTENT_ROOT_PATH, 'fasttext')
 WORD_EMBEDDING_ROOT_PATH = os.path.join(FASTTEXT_ROOT_PATH, 'word_vectors')
@@ -73,7 +74,8 @@ def export(model_version):
         for example in EXAMPLES_REPO.values():
             intent_name = example['IntentName']
             example_text = example['ExampleText']
-            line = "__label__" + intent_name + " , " + example_text + "\n"
+            example = preprocessing(example_text)
+            line = "__label__" + intent_name + " , " + example + "\n"
             file.write(line)
 
 

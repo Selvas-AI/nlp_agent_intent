@@ -1,10 +1,11 @@
 # -*- coding: utf-8-*-
 import json
-import variable
 
-from fasttext_default import make_parameter, export, INTENT_MODEL, create_model_version, print_parameter
 from flask import make_response, request
 from flask_restful import Resource
+
+import variable
+from fasttext_default import make_parameter, export, INTENT_MODEL, create_model_version, print_parameter
 
 
 class Train(Resource):

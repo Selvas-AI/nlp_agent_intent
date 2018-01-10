@@ -4,4 +4,6 @@ dependencies:
 - pip:
     - flask
     - flask_restful
+    - jsonschema
+    - oktpy
     - requests

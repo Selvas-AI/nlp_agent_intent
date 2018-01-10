@@ -3,6 +3,8 @@ import collections
 import os
 import threading
 
+from oktpy.twitter import TwitterMorphManager
+
 EXAMPLE_SCHEMA = {
     "ExampleText": {"type": "string"},
     "IntentName": {"type": "string"},
@@ -31,3 +33,11 @@ INTENT_ROOT_PATH = os.path.join(MODEL_ROOT, 'intent')
 INTENT_MODEL = None
 
 CANDIDATE_NUMBER = 5
+
+
+def preprocessing(origin_line):
+    line = origin_line.strip()
+    morphs = TwitterMorphManager().morph_analyzer.morphs(line)
+    line = " ".join(morphs)
+    line = line.replace("   ", " ")
+    return line
