@@ -4,7 +4,7 @@
 
 * **URL**
 
-  /api/v1.0/apps/{app id}/predict
+  /intent/predict
 
 * **Method:**
 
@@ -18,10 +18,9 @@
 
 * **Success Response:**
   
-  의도에 대한 이름을 반환한다.
+  의도 및 점수를 반환한다.
 
   * **Code:** 200 <br />
-    **Content:** `intent`
         
  
 * **Error Response:**

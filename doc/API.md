@@ -1,37 +1,12 @@
 # API
-## Apps
-App을 생성 및 삭제 등을 할 수 있는 API들
-
-* [Add App](api/app/Add_App.md)
-* [delete App](api/app/delete_App.md)
-* [get App](api/app/get_App.md)
-* [get Apps](api/app/get_Apps.md)
-
 ## Examples
 Example을 추가 및 삭제 등을 할 수 있는 API들
 
 * [Add Label](api/examples/Add_Label.md)
-* [Add Batch Labels](api/examples/Add_Batch_Labels.md)
-* [delete Example Labels](api/examples/delete_Example_Labels.md)
+* [Batch Add Labels](api/examples/Batch_Add_Labels.md)
+* [Delete Label](api/examples/Delete_Label.md)
+* [Get Label](api/examples/Get_Label.md)
 * [Review Labeled Utterances](api/examples/Review_Labeled_Utterances.md)
-
-## Export
-app 에 대한 정보를 export 할 수 있는 API
-
-* [Export Application](api/export/Export_Application.md)
-
-## Import
-app 에 대한 정보를 import 할 수 있는 API
-
-* [Import Application](api/import/Import_Application.md)
-
-## Intents
-Module을 생성 및 삭제 등을 할 수 있는 API들
-
-* [Create Intent Classifier](api/intent/Create_Intent_Classifier.md)
-* [delete Intent Model](api/intent/delete_Intent_Model.md)
-* [get Intent Info](api/intent/get_Intent_Info.md)
-* [get Intent Infos](api/intent/get_Intent_Infos.md)
 
 ## Predict
 입력 문장에 대한 의도 분류 결과를 반환 하는 API

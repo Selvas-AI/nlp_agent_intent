@@ -8,9 +8,9 @@
 
 ### Input Parameter format
 #### Train, Quantize 함수에서 사용한다.
-#### 파라미터 값은 [fasttext README 파일](fasttext/README.md)을 참조한다.
-#### [fasttext README 파일](fasttext/README.md) 에서 input은 아래 json 에서 input_path
-#### [fasttext README 파일](fasttext/README.md) 에서 output은 아래 json 에서 output_path
+#### 파라미터 값은 [fasttext README 파일](src/fasttext/README.md)을 참조한다.
+#### [fasttext README 파일](src/fasttext/README.md) 에서 input은 아래 json 에서 input_path
+#### [fasttext README 파일](src/fasttext/README.md) 에서 output은 아래 json 에서 output_path
 #### 아래 json에서 model은 `skipgram`, `cbow`, `supervised`만 가능하다.
 ``` json
 {
@@ -50,15 +50,6 @@
 }
 ```
 
-### Test Output Format
-``` json
-{
-  "n" : string,
-  "precision" : string,
-  "recall" : string
-}
-```
-
 ### Return Type
 #### ReturnType
 ##### 후보와 점수에 대한 쌍의 리스트를 표현하기 위함
@@ -88,63 +79,57 @@ std::pair<bool, std::string>
 #### LoadModel
 ##### 리소스를 메모리에 로딩한다.
 ``` cpp
-bool LoadModel(char* resource name, char* resource path)
-```
-
-#### UnLoadModel
-##### 리소스를 해제 한다.
-``` cpp
-bool UnLoadModel(char* resource name)
+bool LoadModel(char* resource path)
 ```
 
 #### Train
 ##### fasttext 라이브러리를 이용하여 워드 임베딩 또는 텍스트 분류를 학습한다.
 ``` cpp
-bool Train(char* resource name, char* parameter)
+bool Train(char* parameter)
 ```
 
 #### Analogies
 ##### A - B + C 의 결과에 대한 k개의 후보 단어를 반환한다.
 ``` cpp
-ReturnType Analogies(char* resource name, ink k, char* A, char* B, char* C)
+ReturnType Analogies(ink k, char* A, char* B, char* C)
 ```
 
 #### NN
 ##### query 에 가까운 k개의 후보 단어를 반환한다.
 ``` cpp
-ReturnType NN(char* resource name, ink k, char* query)
+ReturnType NN(ink k, char* query)
 ```
 
 #### GetNgrams
 ``` cpp
-VectorListReturnType GetNgrams(char* resource name, char* word)
+VectorListReturnType GetNgrams(char* word)
 ```
 
 #### GetSentenceVector
 ##### query 에 대한 sentence vector를 반환한다.
 ``` cpp
-VectorReturnType GetSentenceVector(char* resource name, char* query)
+VectorReturnType GetSentenceVector(char* query)
 ```
 
 #### GetWordVectors
 ##### query 에 대한 word vector를 반환한다.
 ``` cpp
-VectorReturnType GetWordVectors(char* resource name, char* query)
+VectorReturnType GetWordVectors(char* query)
 ```
 
 #### Predict
 ##### query 에 대한 텍스트 분류 결과를 반환한다.
 ``` cpp
-ReturnType Predict(char* resource name, int k, char* query)
+ReturnType Predict(int k, char* query)
 ```
 
-#### Text
+#### Test
 ##### file path 에 대한 텍스트 분류 결과를 반환한다.
 ``` cpp
-StringReturnType Text(char* resource name, int k, char* file path)
+StringReturnType Test(int k, char* file path)
 ```
 
 #### Quantize
 ``` cpp
-bool Quantize(char* resource name, char* parameter)
+bool Quantize(char* parameter)
 ```

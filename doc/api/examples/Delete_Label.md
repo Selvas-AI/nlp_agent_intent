@@ -1,22 +1,27 @@
-**Review Labeled Utterances**
+**Delete Label**
 ----
   This API should be called before calling the review API to get a list of ids for labeled utterances.
 
 * **URL**
 
-  /intent/examples
+  /intent/example
 
 * **Method:**
 
-  `GET`
+  `DELETE`
 
 *  **URL Params**
 
    **Required:**
  
-   `count=[integer]`   
-   
+   `exampleid=[integer]`
+
 * **Success Response:**
+  
 
   * **Code:** 200 <br />
+        
  
+* **Error Response:**
+
+  * **Code:** 400 <br />

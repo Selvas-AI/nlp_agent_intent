@@ -1,10 +1,10 @@
-**Add Batch Labels**
+**Batch Add Labels**
 ----
   Adds a batch of labeled examples to the specified application
 
 * **URL**
 
-  /api/v1.0/apps/{app id}/examples
+  /intent/examples
 
 * **Method:**
 
@@ -13,7 +13,7 @@
 * **Data Params**
 
   *  ExampleText 필드에 입력 문장을 적는다. (필수)
-  *  IntentName 필드에 의도를 적는다. (선택)
+  *  IntentName 필드에 의도를 적는다. (필수)
   
 ``` json
 {
@@ -28,7 +28,6 @@
 * **Success Response:** 
 
   * **Code:** 200 <br />
-    **Content:** `Success`
         
  
 * **Error Response:**

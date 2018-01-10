@@ -4,7 +4,7 @@
 
 * **URL**
 
-  /api/v1.0/apps/{app id}/train
+  /intent/train
 
 * **Method:**
 
@@ -18,7 +18,6 @@
 * **Success Response:**
   
   * **Code:** 200 <br />
-    **Content:** `Success`
         
  
 * **Error Response:**
