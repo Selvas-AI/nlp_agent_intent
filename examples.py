@@ -17,11 +17,15 @@ class Examples(Resource):
     def get(self):
         args = self.req_parse.parse_args(strict=True)
         output = []
+
+        variable.GLOBAL_LOCK.acquire()
         for index, example in EXAMPLES_REPO.items():
             example["EXAMPLE_ID"] = index
             output.append(example)
             if len(output) > args['count']:
                 break
+        variable.GLOBAL_LOCK.release()
+
         return jsonify(output)
 
     def post(self):
@@ -32,9 +36,12 @@ class Examples(Resource):
             return make_response("invalid examples format", 400)
 
         utterances = examples['utterances']
+
+        variable.GLOBAL_LOCK.acquire()
         for example in utterances:
             EXAMPLES_REPO[variable.EXAMPLE_ID] = example
             variable.EXAMPLE_ID += 1
-
         variable.TRAIN_STATUS = 0
+        variable.GLOBAL_LOCK.release()
+
         return make_response("added %d items" % len(utterances), 200)

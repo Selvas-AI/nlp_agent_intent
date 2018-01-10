@@ -5,6 +5,7 @@ import variable
 from fasttext_default import INTENT_MODEL
 from flask import make_response
 from flask_restful import Resource, reqparse
+from variable import CANDIDATE_NUMBER
 
 
 class Predict(Resource):
@@ -19,7 +20,11 @@ class Predict(Resource):
 
         args = self.req_parse.parse_args(strict=True)
         example = args['example']
-        result = INTENT_MODEL.Predict(1, example)
+
+        variable.GLOBAL_LOCK.acquire()
+        result = INTENT_MODEL.Predict(CANDIDATE_NUMBER, example)
+        variable.GLOBAL_LOCK.release()
+
         if not result.first:
             return make_response("Predict fail.", 400)
 

@@ -15,10 +15,13 @@ class Example(Resource):
 
     def delete(self):
         args = self.req_parse.parse_args(strict=True)
+
+        variable.GLOBAL_LOCK.acquire()
         try:
             del EXAMPLES_REPO[args[EXAMPLE_ID_STRING]]
         except Exception:
             return make_response("invalid example id", 400)
+        variable.GLOBAL_LOCK.release()
 
         return make_response("[%d] example was deleted" % args[EXAMPLE_ID_STRING], 200)
 
@@ -36,8 +39,10 @@ class Example(Resource):
         except Exception:
             return make_response("invalid example format", 400)
 
+        variable.GLOBAL_LOCK.acquire()
         EXAMPLES_REPO[variable.EXAMPLE_ID] = example
         variable.EXAMPLE_ID += 1
-
         variable.TRAIN_STATUS = 0
+        variable.GLOBAL_LOCK.release()
+
         return make_response("added item", 200)
