@@ -7,7 +7,7 @@ import os
 
 import variable
 from fasttext import FasttextWrapper
-from variable import INTENT_ROOT_PATH, INTENT_MODEL, EXAMPLES_REPO, preprocessing
+from variable import INTENT_ROOT_PATH, EXAMPLES_REPO, preprocessing
 
 
 FASTTEXT_ROOT_PATH = os.path.join(INTENT_ROOT_PATH, 'fasttext')

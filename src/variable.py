@@ -27,10 +27,10 @@ GLOBAL_LOCK = threading.Lock()
 EXAMPLES_REPO = collections.OrderedDict()
 EXAMPLE_ID = 0
 TRAIN_STATUS = 0
+
+PORT = int(os.getenv('PORT', "9000"))
 MODEL_ROOT = os.getenv('MODEL_ROOT', '')
 INTENT_ROOT_PATH = os.path.join(MODEL_ROOT, 'intent')
-
-INTENT_MODEL = None
 
 CANDIDATE_NUMBER = 5
 
