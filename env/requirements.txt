@@ -1,6 +1,5 @@
 Flask
 Flask-RESTful
-urllib
 svlog
 jsonschema
 oktpy
