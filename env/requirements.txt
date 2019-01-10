@@ -1,6 +1,6 @@
 Flask
 Flask-RESTful
 jsonschema
-oktpy
 requests
 git+http://gitlab.selvasai.com/util/svlog.git
+git+http://gitlab.selvasai.com/nlp/oktpy.git
