@@ -1,6 +1,6 @@
 Flask
 Flask-RESTful
-svlog
 jsonschema
 oktpy
 requests
+git+http://gitlab.selvasai.com/util/svlog.git

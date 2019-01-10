@@ -16,7 +16,7 @@ ADD env /env
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Seoul /etc/localtime && \
     sed -i 's/archive.ubuntu.com/ftp.daumkakao.com/' /etc/apt/sources.list && \
-    buildDeps='gcc g++ make' && \
+    buildDeps='gcc g++ make git' && \
     excuteDeps='language-pack-ko python3-dev python3-setuptools python3-pip openjdk-8-jre' && \
     apt-get update && \
     apt-get install -y $buildDeps $excuteDeps --no-install-recommends && \
